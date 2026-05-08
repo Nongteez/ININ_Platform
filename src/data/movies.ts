@@ -8,23 +8,122 @@ import m7 from "@/assets/m7.jpg";
 import m8 from "@/assets/m8.jpg";
 import type { Movie } from "@/components/MovieRow";
 
-const pool: Movie[] = [
-  { title: "เมืองฝนสีนีออน", img: m1, year: 2024, match: 96, duration: "2 ชม. 14 น." },
-  { title: "สงครามดาราจักร", img: m2, year: 2023, match: 92, duration: "2 ชม. 30 น." },
-  { title: "อาณาจักรมังกร", img: m3, year: 2025, match: 89, duration: "1 ชม. 58 น." },
-  { title: "รักใต้แสงปารีส", img: m4, year: 2022, match: 85, duration: "1 ชม. 45 น." },
-  { title: "ระเบิดเดือด", img: m5, year: 2024, match: 91, duration: "2 ชม. 05 น." },
-  { title: "ป่าต้องคำสาป", img: m6, year: 2023, match: 88, duration: "1 ชม. 52 น." },
-  { title: "ผจญภัยพันหมื่นลี้", img: m7, year: 2024, match: 94, duration: "1 ชม. 36 น." },
-  { title: "ตระกูลมาเฟีย", img: m8, year: 2022, match: 90, duration: "2 ชม. 22 น." },
+const allMovies: Movie[] = [
+  {
+    title: "Neon Rain City",
+    img: m1,
+    year: 2026,
+    match: 97,
+    duration: "2h 14m",
+    category: "Sci-Fi",
+    description:
+      "In a rain-soaked cyberpunk metropolis, a rogue detective uncovers a conspiracy that connects the city's neon underworld to an AI god threatening to rewrite reality itself.",
+  },
+  {
+    title: "Galactic Siege",
+    img: m2,
+    year: 2025,
+    match: 94,
+    duration: "2h 30m",
+    category: "Sci-Fi",
+    description:
+      "When an alien armada surrounds Earth's last space station, a crew of misfits must pilot an ancient warship on a desperate mission to save humanity from extinction.",
+  },
+  {
+    title: "Dragon Kingdom",
+    img: m3,
+    year: 2026,
+    match: 91,
+    duration: "1h 58m",
+    category: "Fantasy",
+    description:
+      "The last dragonrider must forge an alliance with a forgotten kingdom to prevent a dark sorcerer from unleashing an army of the dead upon the world.",
+  },
+  {
+    title: "Love in Paris",
+    img: m4,
+    year: 2025,
+    match: 88,
+    duration: "1h 45m",
+    category: "Romance",
+    description:
+      "Two strangers meet on a rain-soaked evening beneath the Eiffel Tower, beginning a whirlwind romance that will change the course of their lives forever.",
+  },
+  {
+    title: "Inferno Protocol",
+    img: m5,
+    year: 2026,
+    match: 95,
+    duration: "2h 05m",
+    category: "Action",
+    description:
+      "A retired special forces operative is pulled back into action when a global terror network threatens to detonate a weapon capable of leveling entire cities.",
+  },
+  {
+    title: "Enchanted Forest",
+    img: m6,
+    year: 2025,
+    match: 90,
+    duration: "1h 52m",
+    category: "Fantasy",
+    description:
+      "Deep within an ancient forest, a young herbalist discovers she possesses the power to communicate with mystical creatures and must protect them from an industrial empire.",
+  },
+  {
+    title: "The Last Ronin",
+    img: m7,
+    year: 2026,
+    match: 96,
+    duration: "1h 36m",
+    category: "Action",
+    description:
+      "A masterless samurai wanders feudal Japan, seeking redemption for a betrayal that destroyed his clan, while hunted by the very empire he once served.",
+  },
+  {
+    title: "Shadow Syndicate",
+    img: m8,
+    year: 2025,
+    match: 93,
+    duration: "2h 22m",
+    category: "Thriller",
+    description:
+      "In the underbelly of a corrupt city, an undercover agent must infiltrate a crime syndicate while battling the ghosts of a past that refuses to stay buried.",
+  },
 ];
 
-const shuffle = (offset: number) => [...pool.slice(offset), ...pool.slice(0, offset)];
+// Row data generation with different shuffles
+const shuffle = (arr: Movie[], offset: number): Movie[] => [
+  ...arr.slice(offset),
+  ...arr.slice(0, offset),
+];
 
-export const rows = [
-  { title: "กำลังเป็นกระแสตอนนี้", movies: pool },
-  { title: "สำหรับคุณโดยเฉพาะ", movies: shuffle(3) },
-  { title: "ออริจินัลของ NEXFLIX", movies: shuffle(5) },
-  { title: "หนังแอ็คชั่นมันส์ ๆ", movies: shuffle(2) },
-  { title: "ดูต่อจากที่ค้างไว้", movies: shuffle(6) },
+// Top 10 with ranking badges
+const top10Movies: Movie[] = allMovies.map((m, i) => ({
+  ...m,
+  rank: i + 1,
+}));
+
+// Continue watching with progress
+const continueWatching: Movie[] = [
+  { ...allMovies[0], progress: 65 },
+  { ...allMovies[4], progress: 30 },
+  { ...allMovies[2], progress: 80 },
+  { ...allMovies[7], progress: 45 },
+  { ...allMovies[5], progress: 15 },
+  { ...allMovies[1], progress: 92 },
+];
+
+export const rows: {
+  title: string;
+  movies: Movie[];
+  variant?: "default" | "top10" | "continue";
+}[] = [
+  { title: "Continue Watching", movies: continueWatching, variant: "continue" },
+  { title: "Trending Now", movies: allMovies },
+  { title: "Top 10 on ININ TV", movies: top10Movies, variant: "top10" },
+  { title: "Sci-Fi Collection", movies: allMovies.filter((m) => m.category === "Sci-Fi") },
+  { title: "Popular on ININ TV", movies: shuffle(allMovies, 3) },
+  { title: "Action & Thrillers", movies: allMovies.filter((m) => m.category === "Action" || m.category === "Thriller") },
+  { title: "Recommended For You", movies: shuffle(allMovies, 5) },
+  { title: "Fantasy & Adventure", movies: allMovies.filter((m) => m.category === "Fantasy") },
 ];
