@@ -118,12 +118,12 @@ export const rows: {
   movies: Movie[];
   variant?: "default" | "top10" | "continue";
 }[] = [
-  { title: "Continue Watching", movies: continueWatching, variant: "continue" },
-  { title: "Trending Now", movies: allMovies },
-  { title: "Top 10 on ININ TV", movies: top10Movies, variant: "top10" },
-  { title: "Sci-Fi Collection", movies: allMovies.filter((m) => m.category === "Sci-Fi") },
-  { title: "Popular on ININ TV", movies: shuffle(allMovies, 3) },
-  { title: "Action & Thrillers", movies: allMovies.filter((m) => m.category === "Action" || m.category === "Thriller") },
-  { title: "Recommended For You", movies: shuffle(allMovies, 5) },
-  { title: "Fantasy & Adventure", movies: allMovies.filter((m) => m.category === "Fantasy") },
-];
+    { title: "Continue Watching", movies: continueWatching, variant: "continue" },
+    { title: "Trending Now", movies: allMovies },
+    { title: "Top 10 on ININ", movies: top10Movies, variant: "top10" },
+    { title: "Sci-Fi Collection", movies: allMovies.filter((m) => m.category === "Sci-Fi") },
+    { title: "Popular on ININ", movies: shuffle(allMovies, 3) },
+    { title: "Action & Thrillers", movies: allMovies.filter((m) => m.category === "Action" || m.category === "Thriller") },
+    { title: "Recommended For You", movies: shuffle(allMovies, 5) },
+    { title: "Fantasy & Adventure", movies: allMovies.filter((m) => m.category === "Fantasy") },
+  ];
