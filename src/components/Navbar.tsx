@@ -1,22 +1,30 @@
 import { useEffect, useState, useCallback } from "react";
 import { Bell, Search, ChevronDown, Menu, X, Plus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/Logo/ICON_ININ.png";
 import { ProfileDropdown } from "./ProfileDropdown";
 
 const links = [
-  { label: "Home", href: "#" },
+  { label: "Home", href: "/" },
   { label: "Interactive", href: "#" },
   { label: "Trending", href: "#" },
   { label: "Community", href: "#" },
-  { label: "My List", href: "#" },
+  { label: "Contact", href: "/contact" },
 ];
+
+/** Check whether a nav link matches the current pathname */
+function isActive(href: string, pathname: string): boolean {
+  if (href === "#") return false;
+  if (href === "/") return pathname === "/";
+  return pathname.startsWith(href);
+}
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const { pathname } = useLocation();
 
   const toggleProfile = useCallback(() => setProfileOpen((p) => !p), []);
   const closeProfile = useCallback(() => setProfileOpen(false), []);
@@ -57,22 +65,48 @@ export function Navbar() {
           </Link>
 
           {/* CENTER — Desktop Navigation (absolutely centered) */}
-          <nav className="hidden lg:flex items-center gap-7 absolute left-1/2 -translate-x-1/2">
-            {links.map((link, i) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.1 + i * 0.05 }}
-                className={`nav-link text-[13px] font-medium transition-colors duration-300 whitespace-nowrap ${i === 0
-                  ? "text-white"
-                  : "text-[#AAB0C5] hover:text-white"
-                  }`}
-              >
-                {link.label}
-              </motion.a>
-            ))}
+          <nav className="hidden lg:flex items-center gap-1.5 absolute left-1/2 -translate-x-1/2">
+            {links.map((link, i) => {
+              const isRoute = link.href.startsWith("/");
+              const active = isActive(link.href, pathname);
+
+              const baseClasses = "relative text-[13px] whitespace-nowrap transition-all duration-250 ease-out px-3.5 py-1.5 rounded-full";
+              const activeClasses = "font-semibold text-white bg-purple-500/[0.15] border border-purple-400/20 shadow-[0_0_12px_rgba(157,77,255,0.2),inset_0_0_12px_rgba(157,77,255,0.05)] backdrop-blur-sm";
+              const inactiveClasses = "font-medium text-zinc-400 border border-transparent hover:text-white hover:bg-white/[0.05]";
+
+              const className = `${baseClasses} ${active ? activeClasses : inactiveClasses}`;
+
+              return isRoute ? (
+                <motion.div
+                  key={link.label}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 + i * 0.05 }}
+                >
+                  <Link to={link.href} className={className}>
+                    {link.label}
+                    {active && (
+                      <motion.span
+                        layoutId="nav-active-pill"
+                        className="absolute inset-0 rounded-full bg-purple-500/[0.15] border border-purple-400/20 -z-10"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </Link>
+                </motion.div>
+              ) : (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 + i * 0.05 }}
+                  className={className}
+                >
+                  {link.label}
+                </motion.a>
+              );
+            })}
           </nav>
 
           {/* RIGHT — Actions */}
@@ -90,7 +124,7 @@ export function Navbar() {
             </motion.div>
 
             {/* Studio Button */}
-            <Link to="/studio">
+            <Link to="/studio-intro">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -165,21 +199,42 @@ export function Navbar() {
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed inset-0 z-[45] bg-[#050816]/98 navbar-glass lg:hidden pt-20"
           >
-            <nav className="flex flex-col items-center gap-6 py-8">
-              {links.map((link, i) => (
-                <motion.a
-                  key={link.label}
-                  href={link.href}
-                  initial={{ opacity: 0, x: 40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.08 }}
-                  onClick={() => setMobileOpen(false)}
-                  className={`text-xl font-medium ${i === 0 ? "text-white" : "text-[#AAB0C5]"
-                    } hover:text-white transition-colors`}
-                >
-                  {link.label}
-                </motion.a>
-              ))}
+            <nav className="flex flex-col items-center gap-3 py-8">
+              {links.map((link, i) => {
+                const isRoute = link.href.startsWith("/");
+                const active = isActive(link.href, pathname);
+
+                const baseClasses = "text-xl transition-all duration-250 ease-out px-6 py-2.5 rounded-full";
+                const activeClasses = "font-semibold text-white bg-purple-500/[0.15] border border-purple-400/20 shadow-[0_0_16px_rgba(157,77,255,0.25)] backdrop-blur-sm";
+                const inactiveClasses = "font-medium text-zinc-400 border border-transparent hover:text-white hover:bg-white/[0.05]";
+
+                const className = `${baseClasses} ${active ? activeClasses : inactiveClasses}`;
+
+                return isRoute ? (
+                  <motion.div
+                    key={link.label}
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.08 }}
+                  >
+                    <Link to={link.href} onClick={() => setMobileOpen(false)} className={className}>
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ) : (
+                  <motion.a
+                    key={link.label}
+                    href={link.href}
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.08 }}
+                    onClick={() => setMobileOpen(false)}
+                    className={className}
+                  >
+                    {link.label}
+                  </motion.a>
+                );
+              })}
 
               {/* Mobile Studio + Coins */}
               <div className="flex items-center gap-3 mt-4 pt-4 border-t border-white/5">

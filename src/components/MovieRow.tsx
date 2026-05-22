@@ -79,11 +79,10 @@ export function MovieRow({ title, movies, variant = "default" }: MovieRowProps) 
                 transition={{ duration: 0.4, delay: idx * 0.03 }}
                 onMouseEnter={() => setHoveredIndex(idx)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className={`group/card relative flex-none cursor-pointer ${
-                  variant === "top10"
+                className={`group/card relative flex-none cursor-pointer ${variant === "top10"
                     ? "w-[42vw] sm:w-[30vw] md:w-[24vw] lg:w-[18vw]"
                     : "w-[38vw] sm:w-[28vw] md:w-[22vw] lg:w-[15vw]"
-                }`}
+                  }`}
               >
                 {/* Top 10 Rank Number */}
                 {variant === "top10" && m.rank && (
@@ -109,9 +108,8 @@ export function MovieRow({ title, movies, variant = "default" }: MovieRowProps) 
 
                   {/* Hover overlay */}
                   <div
-                    className={`absolute inset-0 transition-opacity duration-300 ${
-                      hoveredIndex === idx ? "opacity-100" : "opacity-0"
-                    }`}
+                    className={`absolute inset-0 transition-opacity duration-300 ${hoveredIndex === idx ? "opacity-100" : "opacity-0"
+                      }`}
                     style={{
                       background: "linear-gradient(180deg, transparent 30%, rgba(5,8,22,0.95) 100%)",
                     }}
@@ -119,9 +117,8 @@ export function MovieRow({ title, movies, variant = "default" }: MovieRowProps) 
 
                   {/* Hover ring — subtle */}
                   <div
-                    className={`absolute inset-0 rounded-lg transition-opacity duration-300 pointer-events-none ${
-                      hoveredIndex === idx ? "opacity-100" : "opacity-0"
-                    }`}
+                    className={`absolute inset-0 rounded-lg transition-opacity duration-300 pointer-events-none ${hoveredIndex === idx ? "opacity-100" : "opacity-0"
+                      }`}
                     style={{
                       boxShadow: "inset 0 0 0 1px rgba(157,77,255,0.15)",
                     }}
@@ -129,11 +126,10 @@ export function MovieRow({ title, movies, variant = "default" }: MovieRowProps) 
 
                   {/* Card Actions */}
                   <div
-                    className={`absolute inset-x-0 bottom-0 p-3 transition-all duration-300 ${
-                      hoveredIndex === idx
+                    className={`absolute inset-x-0 bottom-0 p-3 transition-all duration-300 ${hoveredIndex === idx
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 translate-y-4"
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center gap-1.5 mb-2">
                       <motion.button
@@ -294,7 +290,7 @@ export function MovieRow({ title, movies, variant = "default" }: MovieRowProps) 
                   </p>
 
                   <div className="flex flex-wrap gap-2 pt-2">
-                    {["Sci-Fi", "Thriller", "Action", "Drama"].map((tag) => (
+                    {["Romantic", "Thriller", "Action", "Drama"].map((tag) => (
                       <span
                         key={tag}
                         className="text-xs px-3 py-1.5 rounded-full bg-white/5 text-white/50 border border-white/5"

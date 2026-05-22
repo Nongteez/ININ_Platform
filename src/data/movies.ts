@@ -10,37 +10,37 @@ import type { Movie } from "@/components/MovieRow";
 
 const allMovies: Movie[] = [
   {
-    title: "Neon Rain City",
+    title: "Puppy Love",
     img: m1,
     year: 2026,
     match: 97,
     duration: "2h 14m",
-    category: "Sci-Fi",
+    category: "Romantic",
     description:
       "In a rain-soaked cyberpunk metropolis, a rogue detective uncovers a conspiracy that connects the city's neon underworld to an AI god threatening to rewrite reality itself.",
   },
   {
-    title: "Galactic Siege",
+    title: "Rain Zone",
     img: m2,
     year: 2025,
     match: 94,
     duration: "2h 30m",
-    category: "Sci-Fi",
+    category: "Romantic",
     description:
       "When an alien armada surrounds Earth's last space station, a crew of misfits must pilot an ancient warship on a desperate mission to save humanity from extinction.",
   },
   {
-    title: "Dragon Kingdom",
+    title: "Wan Yam",
     img: m3,
     year: 2026,
     match: 91,
     duration: "1h 58m",
-    category: "Fantasy",
+    category: "Horror",
     description:
       "The last dragonrider must forge an alliance with a forgotten kingdom to prevent a dark sorcerer from unleashing an army of the dead upon the world.",
   },
   {
-    title: "Love in Paris",
+    title: "Startup Partner",
     img: m4,
     year: 2025,
     match: 88,
@@ -50,37 +50,37 @@ const allMovies: Movie[] = [
       "Two strangers meet on a rain-soaked evening beneath the Eiffel Tower, beginning a whirlwind romance that will change the course of their lives forever.",
   },
   {
-    title: "Inferno Protocol",
+    title: "Sea You",
     img: m5,
     year: 2026,
     match: 95,
     duration: "2h 05m",
-    category: "Action",
+    category: "BoyLove",
     description:
       "A retired special forces operative is pulled back into action when a global terror network threatens to detonate a weapon capable of leveling entire cities.",
   },
   {
-    title: "Enchanted Forest",
+    title: "99 Rules",
     img: m6,
     year: 2025,
     match: 90,
     duration: "1h 52m",
-    category: "Fantasy",
+    category: "Horror",
     description:
       "Deep within an ancient forest, a young herbalist discovers she possesses the power to communicate with mystical creatures and must protect them from an industrial empire.",
   },
   {
-    title: "The Last Ronin",
+    title: "The Esan Love",
     img: m7,
     year: 2026,
     match: 96,
     duration: "1h 36m",
-    category: "Action",
+    category: "BoyLove",
     description:
       "A masterless samurai wanders feudal Japan, seeking redemption for a betrayal that destroyed his clan, while hunted by the very empire he once served.",
   },
   {
-    title: "Shadow Syndicate",
+    title: "The Last Hope",
     img: m8,
     year: 2025,
     match: 93,
@@ -121,9 +121,9 @@ export const rows: {
     { title: "Continue Watching", movies: continueWatching, variant: "continue" },
     { title: "Trending Now", movies: allMovies },
     { title: "Top 10 on ININ", movies: top10Movies, variant: "top10" },
-    { title: "Sci-Fi Collection", movies: allMovies.filter((m) => m.category === "Sci-Fi") },
+    { title: "Romantic Collection", movies: allMovies.filter((m) => m.category === "Romantic") },
     { title: "Popular on ININ", movies: shuffle(allMovies, 3) },
-    { title: "Action & Thrillers", movies: allMovies.filter((m) => m.category === "Action" || m.category === "Thriller") },
+    { title: "Boy Love", movies: allMovies.filter((m) => m.category === "BoyLove" || m.category === "Thriller") },
     { title: "Recommended For You", movies: shuffle(allMovies, 5) },
-    { title: "Fantasy & Adventure", movies: allMovies.filter((m) => m.category === "Fantasy") },
+    { title: "Horror", movies: allMovies.filter((m) => m.category === "Horror") },
   ];

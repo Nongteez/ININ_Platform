@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Play,
   GitBranch,
@@ -15,28 +16,35 @@ import {
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { MobileNav } from "@/components/MobileNav";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import logo from "@/assets/Logo/ICON_ININ.png";
 
 // ─── Placeholder images ──────────────────────────────────────────
 // Replace with actual Creator assets from:
 // src/assets/Creator/
-import m1 from "@/assets/m1.jpg";
-import m2 from "@/assets/m2.jpg";
-import m3 from "@/assets/m3.jpg";
-import m4 from "@/assets/m4.jpg";
-import m5 from "@/assets/m5.jpg";
-import m6 from "@/assets/m6.jpg";
-import m7 from "@/assets/m7.jpg";
-import m8 from "@/assets/m8.jpg";
+import m1 from "@/assets/Image/Studio/m1.jpg";
+import m2 from "@/assets/Image/Studio/m2.jpg";
+import m3 from "@/assets/Image/Studio/m3.jpg";
+import m4 from "@/assets/Image/Studio/m4.jpg";
+import m5 from "@/assets/Image/Studio/m5.jpg";
+import m6 from "@/assets/Image/Studio/m6.jpg";
+import m7 from "@/assets/Image/Studio/m7.jpg";
+import m8 from "@/assets/Image/Studio/m8.jpg";
+
+import p1 from "@/assets/Image/Studio/p1.jpg";
+import p2 from "@/assets/Image/Studio/p2.jpg";
+import p3 from "@/assets/Image/Studio/p3.jpg";
+import p4 from "@/assets/Image/Studio/p4.jpg";
+import p5 from "@/assets/Image/Studio/p5.jpg";
 
 // ─── Data ────────────────────────────────────────────────────────
 
 const showcaseProjects = [
-  { img: m7, title: "Lost Signal", creator: "Studio Neon", genre: "Sci-Fi Thriller", episodes: 6, choices: 18 },
-  { img: m8, title: "Heartbeat", creator: "Lumina Films", genre: "Romance", episodes: 8, choices: 24 },
-  { img: m1, title: "Phantom City", creator: "Indie Collective", genre: "Mystery", episodes: 5, choices: 15 },
-  { img: m3, title: "Emerald Path", creator: "Dreamweaver", genre: "Fantasy", episodes: 10, choices: 32 },
-  { img: m5, title: "Last Breath", creator: "Dark Canvas", genre: "Horror", episodes: 4, choices: 12 },
+  { img: p1, title: "Puppy Love", creator: "Studio Neon", genre: "Romantic", episodes: 6, choices: 18 },
+  { img: p2, title: "Rain Zone", creator: "Lumina Films", genre: "Romantic", episodes: 8, choices: 24 },
+  { img: p3, title: "Sea You", creator: "Indie Collective", genre: "Boy Love", episodes: 5, choices: 15 },
+  { img: p4, title: "The Esan Love", creator: "Dreamweaver", genre: "Boy Love", episodes: 10, choices: 32 },
+  { img: p5, title: "Startup Partner", creator: "Dark Canvas", genre: "Inspirational", episodes: 4, choices: 12 },
 ];
 
 const features = [
@@ -76,6 +84,7 @@ const fadeUp = {
 // ─── Section 1: Hero ─────────────────────────────────────────────
 
 function HeroSection() {
+  const navigate = useNavigate();
   return (
     <section className="relative min-h-[92vh] flex items-center overflow-hidden">
       {/* Subtle background accent */}
@@ -124,6 +133,7 @@ function HeroSection() {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={() => navigate("/studio")}
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold text-sm text-white cursor-pointer btn-play"
               >
                 <Zap className="h-4 w-4" />
@@ -132,6 +142,9 @@ function HeroSection() {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={() => {
+                  document.getElementById("tutorial-section")?.scrollIntoView({ behavior: "smooth" });
+                }}
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-sm text-white cursor-pointer btn-info"
               >
                 <Play className="h-3.5 w-3.5 fill-current" />
@@ -320,11 +333,10 @@ function ScreenshotShowcase() {
                   direction.current = i > active ? 1 : -1;
                   setActive(i);
                 }}
-                className={`rounded-full transition-all duration-300 cursor-pointer ${
-                  active === i
-                    ? "w-6 h-2 bg-[#9D4DFF] shadow-[0_0_10px_rgba(157,77,255,0.5)]"
-                    : "w-2 h-2 bg-white/20 hover:bg-white/40"
-                }`}
+                className={`rounded-full transition-all duration-300 cursor-pointer ${active === i
+                  ? "w-6 h-2 bg-[#9D4DFF] shadow-[0_0_10px_rgba(157,77,255,0.5)]"
+                  : "w-2 h-2 bg-white/20 hover:bg-white/40"
+                  }`}
               />
             ))}
           </div>
@@ -339,10 +351,12 @@ function ScreenshotShowcase() {
 function TutorialSection() {
   return (
     <motion.section
+      id="tutorial-section"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
       className="px-4 md:px-12 lg:px-16 py-10 md:py-16"
+      style={{ scrollMarginTop: "80px" }}
     >
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-10">
@@ -528,6 +542,7 @@ export default function Studio() {
       <CreatorShowcase />
       <FeaturesSection />
       <Footer />
+      <ScrollToTop />
       <MobileNav />
     </div>
   );

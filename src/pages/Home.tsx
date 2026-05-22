@@ -1,9 +1,13 @@
+// ─── Landing Page ─────────────────────────────────────────────────
+// Updated Home page with Studio CTA
+
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { MovieRow } from "@/components/MovieRow";
 import { Footer } from "@/components/Footer";
 import { MobileNav } from "@/components/MobileNav";
 import { SplashScreen } from "@/components/SplashScreen";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import { rows } from "@/data/movies";
 
 export default function Home() {
@@ -27,6 +31,7 @@ export default function Home() {
         </div>
 
         <Footer />
+        <ScrollToTop />
         <MobileNav />
       </div>
     </>
