@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CinematicParticles } from "./Particles";
-import hero from "@/assets/image/PuppyLove/BG_PUPPYNOLOGO2.png";
+import hero from "@/assets/Image/PuppyLove/BG_PUPPYNOLOGO2.png";
 
 export function Hero() {
   const navigate = useNavigate();
