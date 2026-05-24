@@ -1,4 +1,4 @@
-import bgHero from "@/assets/image//PuppyLove/BG_PUPPYNOLOGO2.png";
+import bgHero from "@/assets/Image//PuppyLove/BG_PUPPYNOLOGO2.png";
 import sceneBg from "@/assets/m2.jpg";
 import introVideo from "@/assets/Image/PuppyLove/VDO/Intro.mp4";
 import stairVideo from "@/assets/Image/PuppyLove/VDO/2_Stair.mp4";
