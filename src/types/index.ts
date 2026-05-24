@@ -75,7 +75,7 @@ export type StoryEdge = Edge;
 
 // ─── Timeline Types ─────────────────────────────────────────────
 
-export type TrackType = "video" | "audio" | "choices" | "effects";
+export type TrackType = "video" | "audio" | "choices" | "effects" | "subtitles" | "emotional" | "camera";
 
 export interface TimelineClip {
   id: string;
@@ -98,7 +98,7 @@ export interface TimelineTrack {
 
 // ─── Asset Types ────────────────────────────────────────────────
 
-export type AssetType = "video" | "image" | "audio" | "effect";
+export type AssetType = "video" | "image" | "audio" | "effect" | "subtitle" | "template";
 
 export interface AssetItem {
   id: string;
@@ -109,6 +109,8 @@ export interface AssetItem {
   fileSize?: string;
   src: string;
   folder?: string;
+  isFavorite?: boolean;
+  lastUsed?: string;
 }
 
 // ─── Sidebar ────────────────────────────────────────────────────
@@ -119,11 +121,16 @@ export type SidebarTab =
   | "choices"
   | "effects"
   | "ai"
-  | "assets";
+  | "assets"
+  | "subtitles"
+  | "templates"
+  | "presets"
+  | "favorites"
+  | "recent";
 
 // ─── Preview ────────────────────────────────────────────────────
 
-export type PreviewMode = "desktop" | "mobile";
+export type PreviewMode = "desktop" | "mobile" | "story" | "streamer";
 
 // ─── Autosave ───────────────────────────────────────────────────
 
@@ -138,4 +145,66 @@ export interface ProjectData {
   edges: StoryEdge[];
   storyMemory: MemoryVariable[];
   savedAt: string;
+}
+
+// ─── AI Assistant ───────────────────────────────────────────────
+
+export interface AISuggestion {
+  id: string;
+  type: "story" | "dialogue" | "route" | "emotion" | "pacing" | "scene" | "subtitle" | "branch" | "engagement" | "ending";
+  title: string;
+  description: string;
+  confidence: number; // 0-100
+  icon: string;
+  action?: string;
+}
+
+export interface AIMessage {
+  id: string;
+  role: "ai" | "user";
+  content: string;
+  timestamp: number;
+  suggestions?: AISuggestion[];
+}
+
+// ─── Creator Analytics ──────────────────────────────────────────
+
+export interface CreatorAnalytics {
+  totalViews: number;
+  avgWatchTime: number;
+  completionRate: number;
+  replayRate: number;
+  engagementScore: number;
+  viralScore: number;
+  emotionalScore: number;
+  viewerPrediction: number;
+  branchPopularity: { branch: string; percentage: number; color: string }[];
+  endingStats: { ending: string; percentage: number; type: "good" | "bad" | "neutral" }[];
+  emotionalTimeline: { time: number; intensity: number; emotion: string }[];
+  audienceHeatmap: { nodeId: string; views: number; avgTime: number; dropoff: number }[];
+  dailyViews: { date: string; views: number }[];
+}
+
+// ─── Publish System ─────────────────────────────────────────────
+
+export interface PublishSettings {
+  platform: "inin" | "web" | "mobile";
+  scheduledRelease: string | null;
+  isPremium: boolean;
+  premiumPrice: number;
+  fanAccessLevel: "public" | "followers" | "premium" | "private";
+  communityVisibility: boolean;
+  socialShareEnabled: boolean;
+  autoGenerateTrailer: boolean;
+}
+
+// ─── Collaboration ──────────────────────────────────────────────
+
+export interface Collaborator {
+  id: string;
+  name: string;
+  avatar: string;
+  color: string;
+  status: "online" | "idle" | "offline";
+  cursor?: { x: number; y: number };
 }

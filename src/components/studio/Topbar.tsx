@@ -7,7 +7,7 @@ import {
   Check, Loader2, Save, Download, RotateCcw, FilePlus, FolderOpen, Clock,
   Camera, Archive, Hammer, Share2, Copy, Trash2, Settings, Keyboard, Book,
   Video, Globe, MessageCircle, Headphones, Info, Package, RefreshCw,
-  ShoppingBag, CheckCircle2, ExternalLink, Palette,
+  ShoppingBag, CheckCircle2, ExternalLink, Palette, Sparkles,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useStudioStore } from "@/store/useStudioStore";
@@ -246,7 +246,7 @@ export function Topbar() {
   const {
     projectName, setProjectName, autosaveStatus, triggerSave,
     isPreviewMode, loadProject, lastSavedAt, setSettingsOpen,
-    editorMode, setPublishModalOpen,
+    editorMode, setPublishModalOpen, setAIPanelOpen,
   } = useStudioStore();
 
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -408,6 +408,18 @@ export function Topbar() {
           title="Settings"
         >
           <Settings className="w-4 h-4" />
+        </motion.button>
+
+        {/* AI Agent */}
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setAIPanelOpen(true)}
+          className="ai-agent-trigger relative w-8 h-8 rounded-full flex items-center justify-center cursor-pointer shrink-0"
+          title="Connect AI Agent"
+          aria-label="Connect AI Agent"
+        >
+          <Sparkles className="w-3.5 h-3.5 text-purple-300/90 relative z-10" />
         </motion.button>
 
         {/* Publish */}

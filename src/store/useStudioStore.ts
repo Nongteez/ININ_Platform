@@ -19,8 +19,12 @@ import type {
   StoryNodeType,
   MemoryVariable,
   ProjectData,
+  AIMessage,
+  AISuggestion,
+  Collaborator,
+  CreatorAnalytics,
 } from "@/types";
-import { initialNodes, initialEdges, defaultMemory } from "@/data/sampleStory";
+import { initialNodes, initialEdges, defaultMemory, sampleAnalytics, sampleAISuggestions } from "@/data/sampleStory";
 
 // ─── Store Interface ────────────────────────────────────────────
 
@@ -97,6 +101,32 @@ interface StudioState {
   saveProject: () => void;
   loadProject: () => boolean;
   lastSavedAt: string | null;
+
+  // ── AI Assistant ──
+  aiPanelOpen: boolean;
+  setAIPanelOpen: (open: boolean) => void;
+  aiMessages: AIMessage[];
+  aiSuggestions: AISuggestion[];
+  addAIMessage: (msg: AIMessage) => void;
+  clearAIMessages: () => void;
+  aiTyping: boolean;
+  setAITyping: (typing: boolean) => void;
+
+  // ── Creator Dashboard ──
+  dashboardOpen: boolean;
+  setDashboardOpen: (open: boolean) => void;
+  analytics: CreatorAnalytics;
+
+  // ── Collaboration ──
+  collaborators: Collaborator[];
+  cloudSyncStatus: "synced" | "syncing" | "offline";
+
+  // ── Futuristic Indicators ──
+  emotionalScore: number;
+  viewerPrediction: number;
+  viralPotential: number;
+  replayabilityScore: number;
+  aiAssisted: boolean;
 }
 
 // ─── Helper ─────────────────────────────────────────────────────
@@ -179,11 +209,6 @@ const defaultNodeData: Record<StoryNodeType, () => StoryNodeData> = {
 
 // ─── Helper: find connected node ────────────────────────────────
 
-function findNextNode(nodeId: string, edges: StoryEdge[]): string | null {
-  const edge = edges.find((e) => e.source === nodeId);
-  return edge?.target || null;
-}
-
 function findChoiceTarget(nodeId: string, choiceIndex: number, edges: StoryEdge[]): string | null {
   const handleId = `choice-${choiceIndex}`;
   const edge = edges.find((e) => e.source === nodeId && e.sourceHandle === handleId);
@@ -205,6 +230,14 @@ function evaluateCondition(condition: { key: string; operator: string; value: nu
     default: return true;
   }
 }
+
+// ─── Default Collaborators ──────────────────────────────────────
+
+const defaultCollaborators: Collaborator[] = [
+  { id: "c1", name: "You", avatar: "", color: "#7B5CFF", status: "online" },
+  { id: "c2", name: "Art Director", avatar: "", color: "#06B6D4", status: "online" },
+  { id: "c3", name: "Writer", avatar: "", color: "#F97316", status: "idle" },
+];
 
 // ─── Store ──────────────────────────────────────────────────────
 
@@ -330,7 +363,7 @@ export const useStudioStore = create<StudioState>((set, get) => ({
     }
 
     // Find target node
-    let targetId = choice?.targetNodeId || findChoiceTarget(previewNodeId, choiceIndex, edges);
+    const targetId = choice?.targetNodeId || findChoiceTarget(previewNodeId, choiceIndex, edges);
 
     if (targetId) {
       // Apply onEnterEffects of target
@@ -352,7 +385,7 @@ export const useStudioStore = create<StudioState>((set, get) => ({
   },
 
   previewGoToNode: (nodeId) => {
-    const { nodes, previewMemory, previewHistory, edges } = get();
+    const { nodes, previewMemory, previewHistory } = get();
     const targetNode = nodes.find((n) => n.id === nodeId);
     if (!targetNode) return;
 
@@ -472,6 +505,47 @@ export const useStudioStore = create<StudioState>((set, get) => ({
       return false;
     }
   },
+
+  // ── AI Assistant ──
+  aiPanelOpen: false,
+  setAIPanelOpen: (open) => set({ aiPanelOpen: open }),
+  aiMessages: [
+    {
+      id: "welcome",
+      role: "ai",
+      content: "Hello! I'm your AI storytelling assistant. I can help you craft better stories, generate dialogue, optimize pacing, and predict audience engagement. What would you like to work on?",
+      timestamp: Date.now(),
+      suggestions: sampleAISuggestions.slice(0, 3),
+    },
+  ],
+  aiSuggestions: sampleAISuggestions,
+  addAIMessage: (msg) => set((s) => ({ aiMessages: [...s.aiMessages, msg] })),
+  clearAIMessages: () => set({
+    aiMessages: [{
+      id: "welcome",
+      role: "ai",
+      content: "Chat cleared. How can I help you with your story?",
+      timestamp: Date.now(),
+    }],
+  }),
+  aiTyping: false,
+  setAITyping: (typing) => set({ aiTyping: typing }),
+
+  // ── Creator Dashboard ──
+  dashboardOpen: false,
+  setDashboardOpen: (open) => set({ dashboardOpen: open }),
+  analytics: sampleAnalytics,
+
+  // ── Collaboration ──
+  collaborators: defaultCollaborators,
+  cloudSyncStatus: "synced",
+
+  // ── Futuristic Indicators ──
+  emotionalScore: 91,
+  viewerPrediction: 78,
+  viralPotential: 64,
+  replayabilityScore: 85,
+  aiAssisted: true,
 }));
 
 // Re-export the condition evaluator for use in components

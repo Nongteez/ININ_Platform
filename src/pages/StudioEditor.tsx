@@ -13,6 +13,7 @@ import { useKeyboardShortcuts } from "@/hooks/useKeyboardShortcuts";
 import { useStudioStore } from "@/store/useStudioStore";
 import { SettingsModal } from "@/components/studio/SettingsModal";
 import { PublishModal } from "@/components/studio/PublishModal";
+import { AIAgentModal } from "@/components/studio/AIAgentModal";
 
 export default function StudioEditor() {
   useKeyboardShortcuts();
@@ -38,6 +39,7 @@ export default function StudioEditor() {
       {/* Modals */}
       <SettingsModal />
       <PublishModal />
+      <AIAgentModal />
 
       {/* Main Content Area */}
       <div className="flex-1 flex min-h-0">

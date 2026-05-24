@@ -114,7 +114,13 @@ function HeroSection() {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => document.getElementById("community-section")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => {
+                  const el = document.getElementById("community-section");
+                  if (el) {
+                    const top = el.getBoundingClientRect().top + window.scrollY - window.innerHeight * 0.30;
+                    window.scrollTo({ top, behavior: "smooth" });
+                  }
+                }}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-white cursor-pointer btn-info"
               >
                 <ExternalLink className="h-3.5 w-3.5" />
@@ -273,31 +279,31 @@ function WhatIsSection() {
 const teamMembers = [
   {
     img: person1,
-    name: "Alex Montclair",
+    name: "SATJAWAT  WONSANTHIE",
     role: "Chief Executive Officer",
     tagline: "Building the future of interactive storytelling.",
-    link: "https://linkedin.com/",
+    link: "https://www.instagram.com/fig._.zz/",
   },
   {
     img: person2,
-    name: "Sophia Ramirez",
+    name: "PANNAWIT  SONPANG",
     role: "Chief Design Officer",
     tagline: "Crafting cinematic creator experiences.",
-    link: "https://instagram.com/",
+    link: "https://www.instagram.com/peachi_pnw/",
   },
   {
     img: person3,
-    name: "Daniel Kim",
+    name: "SETTAPON  CHOEDPHUTSA",
     role: "Chief Technology Officer",
     tagline: "Developing scalable interactive platform systems.",
-    link: "https://github.com/",
+    link: "https://linktr.ee/settapon/",
   },
   {
     img: person4,
-    name: "Mia Takahashi",
+    name: "SUKIT  PATJUSO",
     role: "Chief Data Officer",
     tagline: "Transforming audience behavior into insight.",
-    link: "https://discord.com/",
+    link: "https://www.instagram.com/s_dream555/",
   },
 ];
 
@@ -307,83 +313,127 @@ function TeamSection() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
-      className="relative px-4 md:px-12 lg:px-16 py-8 md:py-14 overflow-hidden"
+      className="relative px-4 md:px-10 lg:px-16 py-14 md:py-24 overflow-hidden"
     >
       {/* Ambient glow behind team section */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full opacity-[0.03] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, #8B5CF6, transparent 70%)", filter: "blur(100px)" }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[700px] rounded-full opacity-[0.04] pointer-events-none"
+        style={{ background: "radial-gradient(ellipse, #8B5CF6, transparent 70%)", filter: "blur(120px)" }}
+      />
+      <div
+        className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full opacity-[0.025] pointer-events-none"
+        style={{ background: "radial-gradient(circle, #3B82F6, transparent 70%)", filter: "blur(100px)" }}
       />
 
-      <div className="relative z-10 max-w-5xl mx-auto">
-        <div className="text-center mb-8">
-          <motion.p variants={fadeUp} custom={0} className="text-xs font-semibold text-[#8B5CF6] uppercase tracking-widest mb-3">
-            Team
-          </motion.p>
-          <motion.h2 variants={fadeUp} custom={0.05} className="text-2xl md:text-4xl font-bold text-white tracking-tight">
+      <div className="relative z-10 max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-14 md:mb-20">
+          <motion.div variants={fadeUp} custom={0} className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/[0.03] border border-white/[0.06] mb-6">
+            <Sparkles className="h-3.5 w-3.5 text-[#C961FF]" />
+            <span className="text-[11px] font-bold text-white/50 uppercase tracking-[0.2em]">The Founders</span>
+          </motion.div>
+          <motion.h2 variants={fadeUp} custom={0.05} className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-[1.1]">
             Meet The Team
           </motion.h2>
-          <motion.p variants={fadeUp} custom={0.1} className="mt-3 text-sm text-[#AAB0C5]/60 max-w-md mx-auto">
+          <motion.p variants={fadeUp} custom={0.1} className="mt-4 text-[15px] md:text-base text-[#AAB0C5]/60 max-w-lg mx-auto leading-relaxed">
             The people behind the platform shaping the future of interactive entertainment.
           </motion.p>
+          {/* Decorative line */}
+          <motion.div
+            variants={fadeUp}
+            custom={0.15}
+            className="mt-6 mx-auto w-20 h-0.5 rounded-full"
+            style={{ background: "linear-gradient(90deg, transparent, #8B5CF6, #C961FF, transparent)" }}
+          />
         </div>
 
-        <motion.div variants={stagger} className="grid sm:grid-cols-2 gap-4">
-          {teamMembers.map((member) => (
+        {/* Team Grid — 2-column cinematic cards */}
+        <motion.div variants={stagger} className="grid md:grid-cols-2 gap-6 md:gap-8">
+          {teamMembers.map((member, idx) => (
             <motion.div
               key={member.name}
               variants={cardUp}
-              whileHover={{ y: -5, transition: { duration: 0.3 } }}
-              className="group relative flex gap-4 p-4 rounded-2xl transition-all duration-500"
+              whileHover={{ y: -8, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }}
+              className="group relative flex gap-6 md:gap-8 p-5 md:p-7 rounded-3xl transition-all duration-700 cursor-default"
               style={{
-                background: "rgba(255,255,255,0.025)",
-                backdropFilter: "blur(12px)",
+                background: "linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(139,92,246,0.02) 50%, rgba(59,130,246,0.015) 100%)",
+                backdropFilter: "blur(20px)",
                 border: "1px solid rgba(255,255,255,0.06)",
               }}
             >
-              {/* Hover glow overlay */}
+              {/* Gradient border overlay on hover */}
               <div
-                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none"
                 style={{
-                  boxShadow: "0 0 40px rgba(139,92,246,0.08), 0 8px 32px rgba(0,0,0,0.3)",
-                  border: "1px solid rgba(139,92,246,0.15)",
-                  borderRadius: "1rem",
+                  background: "linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(59,130,246,0.04) 100%)",
+                  boxShadow: "0 0 60px rgba(139,92,246,0.1), 0 8px 40px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(139,92,246,0.18)",
+                  borderRadius: "1.5rem",
                 }}
               />
+              {/* Top-edge gradient line on hover */}
+              <div
+                className="absolute top-0 left-[10%] right-[10%] h-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                style={{ background: "linear-gradient(90deg, transparent, rgba(139,92,246,0.5), rgba(201,97,255,0.4), transparent)" }}
+              />
 
-              {/* Portrait Image */}
-              <div className="relative shrink-0 w-[100px] h-[120px] md:w-[110px] md:h-[132px] rounded-xl overflow-hidden ring-1 ring-white/[0.06] group-hover:ring-purple-500/20 transition-all duration-500">
+              {/* Portrait Image — Large & Cinematic */}
+              <div className="relative shrink-0 w-[130px] h-[170px] sm:w-[150px] sm:h-[195px] md:w-[170px] md:h-[220px] rounded-2xl overflow-hidden transition-all duration-700 group-hover:shadow-[0_0_40px_rgba(139,92,246,0.15)]"
+                style={{
+                  boxShadow: "0 4px 24px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06)",
+                }}
+              >
                 <img
                   src={member.img}
                   alt={member.name}
-                  className="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                  className="w-full h-full object-cover object-top group-hover:scale-[1.06] transition-transform duration-[900ms] ease-out"
                 />
-                {/* Subtle bottom gradient on image */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                {/* Cinematic bottom gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent" />
+                {/* Subtle purple tint on hover */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/0 via-transparent to-purple-500/0 group-hover:from-purple-900/10 group-hover:to-purple-500/5 transition-all duration-700" />
               </div>
 
-              {/* Info */}
-              <div className="flex flex-col justify-center min-w-0 py-1">
-                <p className="text-[15px] md:text-base font-bold text-white tracking-tight leading-tight">{member.name}</p>
-                <p className="text-[11px] font-semibold text-[#8B5CF6] mt-1 tracking-wide uppercase">{member.role}</p>
-                <p className="text-[12px] text-[#AAB0C5]/50 mt-2.5 leading-relaxed">{member.tagline}</p>
+              {/* Info Block */}
+              <div className="flex flex-col justify-center min-w-0 py-2 md:py-3 relative z-10">
+                {/* Name */}
+                <h3 className="text-lg sm:text-xl md:text-[22px] font-black text-white tracking-tight leading-tight">
+                  {member.name}
+                </h3>
+
+                {/* Role — Purple gradient */}
+                <p
+                  className="text-[11px] sm:text-xs font-bold mt-2 tracking-[0.15em] uppercase"
+                  style={{
+                    background: "linear-gradient(90deg, #8B5CF6, #C961FF, #A78BFA)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  {member.role}
+                </p>
+
+                {/* Description */}
+                <p className="text-[13px] sm:text-sm text-[#AAB0C5]/55 mt-4 leading-[1.7] max-w-[320px]">
+                  {member.tagline}
+                </p>
 
                 {/* Glass Connect Button */}
                 <motion.a
                   href={member.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.06, y: -1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="mt-3 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-[10px] font-semibold text-white/40 w-fit transition-all duration-300 hover:text-white/90 hover:border-purple-500/25 hover:shadow-[0_0_20px_rgba(139,92,246,0.12)]"
+                  whileHover={{ scale: 1.05, y: -1 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-[11px] sm:text-xs font-bold text-white/45 w-fit transition-all duration-400 hover:text-white hover:shadow-[0_0_30px_rgba(139,92,246,0.15)]"
                   style={{
-                    background: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(255,255,255,0.06)",
-                    backdropFilter: "blur(8px)",
+                    background: "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(139,92,246,0.06) 100%)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    backdropFilter: "blur(12px)",
                   }}
                 >
-                  <ArrowUpRight className="h-2.5 w-2.5" />
+                  <ExternalLink className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                   Connect
+                  <ArrowUpRight className="h-2.5 w-2.5 opacity-50 group-hover:opacity-100 transition-opacity" />
                 </motion.a>
               </div>
             </motion.div>
@@ -450,7 +500,7 @@ const socials = [
   { name: "TikTok", icon: logoTiktok, href: "https://tiktok.com" },
   { name: "YouTube", icon: logoYoutube, href: "https://youtube.com" },
   { name: "Discord", icon: logoDiscord, href: "https://discord.com" },
-  { name: "Instagram", icon: logoInstagram, href: "https://instagram.com" },
+  { name: "Instagram", icon: logoInstagram, href: "https://www.instagram.com/ininstudio_/" },
   { name: "Facebook", icon: logoFacebook, href: "https://facebook.com" },
 ];
 

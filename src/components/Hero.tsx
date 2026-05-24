@@ -1,10 +1,12 @@
 import { Play, Info, Volume2, VolumeX } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { CinematicParticles } from "./Particles";
-import hero from "@/assets/Hero_FIX2.png";
+import hero from "@/assets/image/PuppyLove/BG_PUPPYNOLOGO2.png";
 
 export function Hero() {
+  const navigate = useNavigate();
   const [muted, setMuted] = useState(true);
 
   const containerVariants = {
@@ -39,7 +41,7 @@ export function Hero() {
         className="absolute inset-0"
         initial={{ scale: 1.05 }}
         animate={{ scale: 1 }}
-        transition={{ duration: 25, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
+        transition={{ duration: 5, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
       >
         <img
           src={hero}
@@ -87,7 +89,7 @@ export function Hero() {
             </span>
           </div>
           <span className="text-[#AAB0C5] text-xs font-medium tracking-wider">
-            Sci-Fi • 2026
+            Romance • 2026
           </span>
         </motion.div>
 
@@ -99,10 +101,10 @@ export function Hero() {
             textShadow: "0 4px 30px rgba(0,0,0,0.5)",
           }}
         >
-          Shadow of the
+          The Puppy
           <br />
           <span className="bg-gradient-to-r from-white via-white/90 to-[#9D4DFF]/50 bg-clip-text text-transparent">
-            Red Star
+            Love Heart
           </span>
         </motion.h1>
 
@@ -112,9 +114,9 @@ export function Hero() {
           className="mt-5 md:mt-7 text-sm sm:text-base md:text-lg text-white/80 max-w-xl leading-relaxed font-normal"
           style={{ textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}
         >
-          When the last astronaut becomes stranded on a mysterious planet, he must
-          confront the truth hidden beneath the blood-red sky. A journey to the
-          edge of the universe is about to begin.
+          When a transfer student enters the halls of St. Lucia Academy, he finds himself surrounded by four girls —
+          each hiding secrets behind their smiles. What begins as a youthful romance soon turns into a journey filled
+          with mystery, heartbreak, and truths buried deep within the school’s shadows.
         </motion.p>
 
         {/* Meta Info */}
@@ -136,6 +138,7 @@ export function Hero() {
             variants={buttonHoverVariants}
             whileHover="hover"
             whileTap="tap"
+            onClick={() => navigate("/game/puppy-love")}
             className="cursor-pointer inline-flex items-center gap-2.5 rounded-xl px-7 py-3 md:px-9 md:py-3.5 font-bold text-base md:text-lg transition-all btn-play"
           >
             <Play className="h-5 w-5 md:h-6 md:w-6 fill-current" />
