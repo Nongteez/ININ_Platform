@@ -75,7 +75,7 @@ export default function PuppyLovePlay() {
     const video = videoRef.current;
     if (video) freezeVideoFrame(video);
 
-    if (gamePhase === "intro" || gamePhase === "stair_route") {
+    if (gamePhase === "intro" || gamePhase === "stair_route" || gamePhase === "canteen_route") {
       setShowDialogue(true);
     } else if (gamePhase === "bad_ending") {
       setGamePhase("game_over");
@@ -99,6 +99,9 @@ export default function PuppyLovePlay() {
       if (gamePhase === "intro") {
         if (choiceId === "gentle") transitionToPhase("stair_route");
         else if (choiceId === "direct") transitionToPhase("bad_ending");
+      } else if (gamePhase === "stair_route") {
+        if (choiceId === "help") transitionToPhase("canteen_route");
+        else if (choiceId === "no_help") transitionToPhase("bad_ending");
       }
     },
     [gamePhase, transitionToPhase],
