@@ -14,7 +14,7 @@ export function Footer() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="px-4 md:px-12 lg:px-16 pt-16 pb-10 border-t border-white/5"
+      className="px-4 md:px-12 lg:px-16 pt-10 md:pt-16 pb-28 md:pb-10 border-t border-white/5"
     >
       <div className="max-w-6xl mx-auto">
         {/* Logo */}

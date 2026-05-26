@@ -40,7 +40,7 @@ export function ScrollToTop() {
           whileTap={{ scale: 0.93 }}
           onClick={scrollToTop}
           aria-label="Scroll to top"
-          className="scroll-to-top-btn fixed z-50 bottom-8 right-8 md:bottom-8 md:right-8 h-12 w-12 md:h-14 md:w-14 rounded-full flex items-center justify-center cursor-pointer"
+          className="scroll-to-top-btn fixed z-50 bottom-20 right-5 md:bottom-8 md:right-8 h-11 w-11 md:h-14 md:w-14 rounded-full flex items-center justify-center cursor-pointer"
         >
           <ChevronsUp className="w-5 h-5 md:w-[22px] md:h-[22px] text-white/80" />
         </motion.button>

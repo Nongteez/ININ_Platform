@@ -19,7 +19,7 @@ export default function Home() {
         <Hero />
 
         {/* Movie Carousels */}
-        <div className="relative z-10 -mt-24 md:-mt-36 space-y-1 pb-20 md:pb-0">
+        <div className="relative z-10 -mt-10 md:-mt-36 space-y-1 pb-24 md:pb-0">
           {rows.map((r) => (
             <MovieRow
               key={r.title}

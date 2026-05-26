@@ -71,7 +71,7 @@ function HeroSection() {
         style={{ background: "radial-gradient(circle, #C961FF, transparent 70%)", filter: "blur(80px)" }}
       />
 
-      <div className="relative z-10 w-full px-4 md:px-12 lg:px-16 pt-24 pb-6 md:pt-28 md:pb-10">
+      <div className="relative z-10 w-full px-5 md:px-12 lg:px-16 pt-22 pb-4 md:pt-28 md:pb-10">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[1fr_1fr] gap-10 lg:gap-16 items-center">
           {/* Left — Copy */}
           <motion.div initial="hidden" animate="visible">
@@ -84,7 +84,7 @@ function HeroSection() {
             <motion.h1
               variants={fadeUp}
               custom={0.08}
-              className="text-[2rem] sm:text-4xl md:text-[2.8rem] font-black text-white leading-[1.1] tracking-[-0.025em]"
+              className="text-[1.7rem] sm:text-4xl md:text-[2.8rem] font-black text-white leading-[1.1] tracking-[-0.025em]"
             >
               Building The Future Of{" "}
               <span className="bg-gradient-to-r from-[#8B5CF6] via-[#C961FF] to-[#3B82F6] bg-clip-text text-transparent">
@@ -95,18 +95,18 @@ function HeroSection() {
             <motion.p
               variants={fadeUp}
               custom={0.16}
-              className="mt-4 text-[14px] md:text-[15px] text-[#AAB0C5] max-w-[480px] leading-[1.65]"
+              className="mt-3 md:mt-4 text-[13px] md:text-[15px] text-[#AAB0C5] max-w-[340px] sm:max-w-[480px] leading-[1.65]"
             >
               ININ is a next-generation interactive FMV platform where audiences shape cinematic stories
               through real-time choices.
             </motion.p>
 
-            <motion.div variants={fadeUp} custom={0.24} className="mt-6 flex flex-wrap gap-3">
+            <motion.div variants={fadeUp} custom={0.24} className="mt-5 md:mt-6 flex flex-wrap gap-2.5 md:gap-3">
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => navigate("/")}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white cursor-pointer btn-play"
+                className="inline-flex items-center gap-2 px-5 md:px-6 py-3 rounded-xl font-bold text-[13px] md:text-sm text-white cursor-pointer btn-play"
               >
                 <Zap className="h-4 w-4" />
                 Explore Platform
@@ -121,7 +121,7 @@ function HeroSection() {
                     window.scrollTo({ top, behavior: "smooth" });
                   }
                 }}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-white cursor-pointer btn-info"
+                className="inline-flex items-center gap-2 px-5 md:px-6 py-3 rounded-xl font-semibold text-[13px] md:text-sm text-white cursor-pointer btn-info"
               >
                 <ExternalLink className="h-3.5 w-3.5" />
                 Join Community
@@ -230,7 +230,7 @@ function WhatIsSection() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
-      className="px-4 md:px-12 lg:px-16 py-8 md:py-12"
+      className="px-5 md:px-12 lg:px-16 py-6 md:py-12"
     >
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
@@ -313,7 +313,7 @@ function TeamSection() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
-      className="relative px-4 md:px-10 lg:px-16 py-14 md:py-24 overflow-hidden"
+      className="relative px-5 md:px-10 lg:px-16 py-10 md:py-24 overflow-hidden"
     >
       {/* Ambient glow behind team section */}
       <div
@@ -327,15 +327,15 @@ function TeamSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-14 md:mb-20">
+        <div className="text-center mb-10 md:mb-20">
           <motion.div variants={fadeUp} custom={0} className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/[0.03] border border-white/[0.06] mb-6">
             <Sparkles className="h-3.5 w-3.5 text-[#C961FF]" />
             <span className="text-[11px] font-bold text-white/50 uppercase tracking-[0.2em]">The Founders</span>
           </motion.div>
-          <motion.h2 variants={fadeUp} custom={0.05} className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-[1.1]">
+          <motion.h2 variants={fadeUp} custom={0.05} className="text-[1.7rem] sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-[1.1]">
             Meet The Team
           </motion.h2>
-          <motion.p variants={fadeUp} custom={0.1} className="mt-4 text-[15px] md:text-base text-[#AAB0C5]/60 max-w-lg mx-auto leading-relaxed">
+          <motion.p variants={fadeUp} custom={0.1} className="mt-3 md:mt-4 text-[13px] md:text-base text-[#AAB0C5]/60 max-w-sm md:max-w-lg mx-auto leading-relaxed">
             The people behind the platform shaping the future of interactive entertainment.
           </motion.p>
           {/* Decorative line */}
@@ -348,13 +348,13 @@ function TeamSection() {
         </div>
 
         {/* Team Grid — 2-column cinematic cards */}
-        <motion.div variants={stagger} className="grid md:grid-cols-2 gap-6 md:gap-8">
+        <motion.div variants={stagger} className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
           {teamMembers.map((member, idx) => (
             <motion.div
               key={member.name}
               variants={cardUp}
               whileHover={{ y: -8, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }}
-              className="group relative flex gap-6 md:gap-8 p-5 md:p-7 rounded-3xl transition-all duration-700 cursor-default"
+              className="group relative flex gap-4 md:gap-8 p-4 md:p-7 rounded-2xl md:rounded-3xl transition-all duration-700 cursor-default"
               style={{
                 background: "linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(139,92,246,0.02) 50%, rgba(59,130,246,0.015) 100%)",
                 backdropFilter: "blur(20px)",
@@ -377,7 +377,7 @@ function TeamSection() {
               />
 
               {/* Portrait Image — Large & Cinematic */}
-              <div className="relative shrink-0 w-[130px] h-[170px] sm:w-[150px] sm:h-[195px] md:w-[170px] md:h-[220px] rounded-2xl overflow-hidden transition-all duration-700 group-hover:shadow-[0_0_40px_rgba(139,92,246,0.15)]"
+              <div className="relative shrink-0 w-[110px] h-[145px] sm:w-[150px] sm:h-[195px] md:w-[170px] md:h-[220px] rounded-xl md:rounded-2xl overflow-hidden transition-all duration-700 group-hover:shadow-[0_0_40px_rgba(139,92,246,0.15)]"
                 style={{
                   boxShadow: "0 4px 24px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06)",
                 }}
@@ -396,7 +396,7 @@ function TeamSection() {
               {/* Info Block */}
               <div className="flex flex-col justify-center min-w-0 py-2 md:py-3 relative z-10">
                 {/* Name */}
-                <h3 className="text-lg sm:text-xl md:text-[22px] font-black text-white tracking-tight leading-tight">
+                <h3 className="text-base sm:text-xl md:text-[22px] font-black text-white tracking-tight leading-tight">
                   {member.name}
                 </h3>
 
@@ -452,7 +452,7 @@ function VisionSection() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
-      className="relative px-4 md:px-12 lg:px-16 py-8 md:py-14 overflow-hidden"
+      className="relative px-5 md:px-12 lg:px-16 py-6 md:py-14 overflow-hidden"
     >
       {/* Ambient */}
       <div
@@ -464,7 +464,7 @@ function VisionSection() {
         <motion.p variants={fadeUp} custom={0} className="text-xs font-semibold text-[#8B5CF6] uppercase tracking-widest mb-4">
           Vision
         </motion.p>
-        <motion.h2 variants={fadeUp} custom={0.05} className="text-2xl md:text-4xl font-black text-white tracking-tight leading-[1.1]">
+        <motion.h2 variants={fadeUp} custom={0.05} className="text-[1.5rem] md:text-4xl font-black text-white tracking-tight leading-[1.1]">
           Our Vision
         </motion.h2>
         <motion.p
@@ -511,7 +511,7 @@ function CommunitySection() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
-      className="px-4 md:px-12 lg:px-16 py-8 md:py-12 scroll-mt-20"
+      className="px-5 md:px-12 lg:px-16 py-6 md:py-12 scroll-mt-20"
     >
       <div className="max-w-4xl mx-auto text-center">
         <motion.p variants={fadeUp} custom={0} className="text-xs font-semibold text-[#8B5CF6] uppercase tracking-widest mb-3">
@@ -524,7 +524,7 @@ function CommunitySection() {
           Follow the evolution of interactive storytelling
         </motion.p>
 
-        <motion.div variants={stagger} className="mt-8 flex items-center justify-center gap-5 md:gap-7 flex-wrap">
+        <motion.div variants={stagger} className="mt-6 md:mt-8 flex items-center justify-center gap-4 md:gap-7 flex-wrap">
           {socials.map((social) => (
             <motion.a
               key={social.name}
@@ -536,7 +536,7 @@ function CommunitySection() {
               whileTap={{ scale: 0.95 }}
               className="group relative flex flex-col items-center gap-2"
             >
-              <div className="w-16 h-16 md:w-[72px] md:h-[72px] rounded-full flex items-center justify-center bg-white/[0.03] border border-white/[0.06] group-hover:border-purple-500/25 group-hover:bg-white/[0.06] transition-all duration-400 group-hover:shadow-[0_0_24px_rgba(139,92,246,0.15)]">
+              <div className="w-14 h-14 md:w-[72px] md:h-[72px] rounded-full flex items-center justify-center bg-white/[0.03] border border-white/[0.06] group-hover:border-purple-500/25 group-hover:bg-white/[0.06] transition-all duration-400 group-hover:shadow-[0_0_24px_rgba(139,92,246,0.15)]">
                 <img src={social.icon} alt={social.name} className="w-7 h-7 md:w-8 md:h-8 object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               <span className="text-[10px] font-semibold text-white/30 group-hover:text-white/60 transition-colors">{social.name}</span>
@@ -557,7 +557,7 @@ function FinalCTASection() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
-      className="relative px-4 md:px-12 lg:px-16 py-10 md:py-14 overflow-hidden"
+      className="relative px-5 md:px-12 lg:px-16 py-8 md:py-14 overflow-hidden"
     >
       {/* Ambient gradient */}
       <div
@@ -578,7 +578,7 @@ function FinalCTASection() {
         <motion.h2
           variants={fadeUp}
           custom={0.06}
-          className="text-2xl md:text-4xl font-black text-white tracking-tight leading-[1.08]"
+          className="text-[1.5rem] md:text-4xl font-black text-white tracking-tight leading-[1.08]"
         >
           Ready To Create{" "}
           <span className="bg-gradient-to-r from-[#8B5CF6] via-[#C961FF] to-[#3B82F6] bg-clip-text text-transparent">

@@ -36,11 +36,11 @@ export function MovieRow({ title, movies, variant = "default" }: MovieRowProps) 
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="group/row relative py-4 md:py-6"
+        className="group/row relative py-3 md:py-6"
       >
         {/* Section Title */}
-        <div className="px-4 md:px-12 lg:px-16 mb-3 flex items-center gap-3">
-          <h2 className="text-base md:text-xl lg:text-2xl font-bold text-white tracking-tight">
+        <div className="px-3.5 md:px-12 lg:px-16 mb-2.5 md:mb-3 flex items-center gap-3">
+          <h2 className="text-[15px] md:text-xl lg:text-2xl font-bold text-white tracking-tight">
             {title}
           </h2>
           <motion.span
@@ -68,7 +68,7 @@ export function MovieRow({ title, movies, variant = "default" }: MovieRowProps) 
           {/* Movie Cards */}
           <div
             ref={ref}
-            className="scrollbar-hide flex gap-1.5 md:gap-3 overflow-x-auto px-4 md:px-12 lg:px-16 pb-4 scroll-smooth"
+            className="scrollbar-hide flex gap-2.5 md:gap-3 overflow-x-auto px-3.5 md:px-12 lg:px-16 pb-2 md:pb-4 scroll-smooth"
           >
             {movies.map((m, idx) => (
               <motion.div
@@ -80,8 +80,8 @@ export function MovieRow({ title, movies, variant = "default" }: MovieRowProps) 
                 onMouseEnter={() => setHoveredIndex(idx)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 className={`group/card relative flex-none cursor-pointer ${variant === "top10"
-                    ? "w-[42vw] sm:w-[30vw] md:w-[24vw] lg:w-[18vw]"
-                    : "w-[38vw] sm:w-[28vw] md:w-[22vw] lg:w-[15vw]"
+                    ? "w-[44vw] sm:w-[30vw] md:w-[24vw] lg:w-[18vw]"
+                    : "w-[40vw] sm:w-[28vw] md:w-[22vw] lg:w-[15vw]"
                   }`}
               >
                 {/* Top 10 Rank Number */}
@@ -92,7 +92,7 @@ export function MovieRow({ title, movies, variant = "default" }: MovieRowProps) 
                 )}
 
                 <motion.div
-                  className="relative aspect-[2/3] overflow-hidden rounded-lg bg-[#0B1020] card-glow"
+                  className="relative aspect-[2/3] overflow-hidden rounded-xl md:rounded-lg bg-[#0B1020] card-glow"
                   whileHover={{ scale: 1.05, y: -8, zIndex: 30 }}
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   style={{

@@ -197,56 +197,53 @@ export function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[45] bg-[#050816]/98 navbar-glass lg:hidden pt-20"
+            className="fixed inset-0 z-[45] bg-[#050816]/[0.97] navbar-glass lg:hidden pt-16"
           >
-            <nav className="flex flex-col items-center gap-3 py-8">
-              {links.map((link, i) => {
-                const isRoute = link.href.startsWith("/");
-                const active = isActive(link.href, pathname);
+            <nav className="flex flex-col px-6 py-6">
+              {/* Mobile menu branding */}
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05 }}
+                className="flex items-center gap-2.5 mb-6 pb-5 border-b border-white/[0.06]"
+              >
+                <img src={logo} alt="ININ" className="h-6 w-auto opacity-60" />
+                <span className="text-[11px] font-semibold text-white/30 tracking-widest uppercase">Menu</span>
+              </motion.div>
 
-                const baseClasses = "text-xl transition-all duration-250 ease-out px-6 py-2.5 rounded-full";
-                const activeClasses = "font-semibold text-white bg-purple-500/[0.15] border border-purple-400/20 shadow-[0_0_16px_rgba(157,77,255,0.25)] backdrop-blur-sm";
-                const inactiveClasses = "font-medium text-zinc-400 border border-transparent hover:text-white hover:bg-white/[0.05]";
-
-                const className = `${baseClasses} ${active ? activeClasses : inactiveClasses}`;
-
-                return isRoute ? (
-                  <motion.div
-                    key={link.label}
-                    initial={{ opacity: 0, x: 40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.08 }}
-                  >
-                    <Link to={link.href} onClick={() => setMobileOpen(false)} className={className}>
-                      {link.label}
-                    </Link>
-                  </motion.div>
-                ) : (
-                  <motion.a
-                    key={link.label}
-                    href={link.href}
-                    initial={{ opacity: 0, x: 40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.08 }}
-                    onClick={() => setMobileOpen(false)}
-                    className={className}
-                  >
-                    {link.label}
-                  </motion.a>
-                );
-              })}
+              {/* Mobile account quick action (bottom nav keeps navigation links) */}
+              <div className="flex flex-col gap-2 mt-1">
+                <motion.button
+                  type="button"
+                  initial={{ opacity: 0, x: 24 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.35 }}
+                  onClick={() => {
+                    setProfileOpen(true);
+                    setMobileOpen(false);
+                  }}
+                  className="text-lg font-medium text-white/70 border border-white/[0.08] bg-white/[0.03] px-4 py-3 rounded-xl w-full text-left hover:text-white hover:border-white/[0.15] transition-colors cursor-pointer"
+                >
+                  Profile
+                </motion.button>
+              </div>
 
               {/* Mobile Studio + Coins */}
-              <div className="flex items-center gap-3 mt-4 pt-4 border-t border-white/5">
-                <div className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.08]">
-                  <span className="text-base leading-none">🪙</span>
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="flex items-center gap-3 mt-4 pt-4 border-t border-white/[0.06]"
+              >
+                <div className="flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-white/[0.04] border border-white/[0.08]">
+                  <span className="text-base leading-none">💎</span>
                   <span className="text-sm font-semibold text-white/90">100</span>
                 </div>
-                <button className="inline-flex items-center gap-1.5 px-5 py-2 rounded-xl text-sm font-semibold text-white cursor-pointer studio-btn">
+                <button className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-sm font-semibold text-white cursor-pointer studio-btn">
                   <Plus className="h-4 w-4" />
                   Studio
                 </button>
-              </div>
+              </motion.div>
             </nav>
           </motion.div>
         )}

@@ -1696,3 +1696,102 @@ select {
   background: linear-gradient(transparent, rgba(123, 92, 255, 0.03), transparent);
   animation: streamer-scan 3s linear infinite;
 }
+
+/* ===================================================================
+   MOBILE REFINEMENTS — Smartphone portrait only (≤767px)
+   Desktop layout stays completely untouched.
+   =================================================================== */
+
+@media (max-width: 767px) {
+
+  /* ─── Mobile Bottom Nav — Premium Glass ─── */
+  .mobile-nav {
+    background: rgba(5, 8, 22, 0.96);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    border-top: none;
+    box-shadow:
+      0 -4px 24px rgba(0, 0, 0, 0.4),
+      0 -1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  /* ─── Buttons — Touch Comfort ─── */
+  .btn-play,
+  .btn-info {
+    min-height: 46px;
+    border-radius: 14px;
+  }
+
+  .btn-play {
+    box-shadow: 0 6px 20px -6px rgba(123, 92, 255, 0.35);
+  }
+
+  .btn-info {
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+  /* ─── Cards — Softer Mobile Depth ─── */
+  .card-glow {
+    box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.6);
+  }
+
+  .card-glow:hover {
+    box-shadow: 0 0 16px rgba(157, 77, 255, 0.06), 0 12px 32px -10px rgba(0, 0, 0, 0.6);
+  }
+
+  /* ─── Rank Numbers — Scale Down ─── */
+  .rank-number {
+    font-size: 5.5rem;
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.12);
+  }
+
+  /* ─── Vignette — Cinematic Mobile ─── */
+  .vignette {
+    box-shadow:
+      inset 0 0 80px 20px rgba(5, 8, 22, 0.4),
+      inset 0 -60px 60px -20px rgba(5, 8, 22, 0.3);
+  }
+
+  /* ─── Glass Card — Slightly Stronger on Mobile ─── */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+  }
+
+  /* ─── Navbar Glass — Stronger Blur on Mobile ─── */
+  .navbar-glass {
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+  }
+
+  /* ─── Profile Dropdown — Tighter on Mobile ─── */
+  .profile-dropdown {
+    border-radius: 16px;
+  }
+
+  /* ─── Studio Preview Card — Softer Shadow ─── */
+  .studio-preview-card {
+    box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.4);
+  }
+
+  /* ─── Progress Bar — Slightly Thicker for Touch ─── */
+  .progress-bar,
+  .progress-bar-track {
+    height: 3px;
+    border-radius: 3px;
+  }
+
+  /* ─── Skeleton — Faster shimmer on mobile ─── */
+  .skeleton {
+    animation-duration: 1.5s;
+  }
+
+  /* ─── Scroll To Top — Complement Mobile Nav ─── */
+  .scroll-to-top-btn {
+    box-shadow:
+      0 4px 20px rgba(123, 92, 255, 0.18),
+      0 0 0 1px rgba(255, 255, 255, 0.04);
+  }
+}
