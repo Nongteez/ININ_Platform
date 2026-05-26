@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CinematicParticles } from "./Particles";
 import hero from "@/assets/Image/PuppyLove/BG_PUPPYNOLOGO2.png";
+import heroMobile from "@/assets/HeroMobile.png";
 
 export function Hero() {
   const navigate = useNavigate();
@@ -43,11 +44,17 @@ export function Hero() {
         animate={{ scale: 1 }}
         transition={{ duration: 5, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
       >
-        <img
-          src={hero}
-          alt="Featured Movie"
-          className="absolute inset-0 h-full w-full object-cover object-[50%_45%] sm:object-[50%_42%] md:object-[50%_32%] lg:object-[50%_28%] xl:object-[50%_26%]"
-        />
+        <picture>
+          <source
+            srcSet={heroMobile}
+            media="(max-width: 767px) and (orientation: portrait)"
+          />
+          <img
+            src={hero}
+            alt="Featured Movie"
+            className="absolute inset-0 h-full w-full object-cover object-[50%_45%] sm:object-[50%_42%] md:object-[50%_32%] lg:object-[50%_28%] xl:object-[50%_26%] hero-mobile-pan"
+          />
+        </picture>
       </motion.div>
 
       {/* Vignette */}
