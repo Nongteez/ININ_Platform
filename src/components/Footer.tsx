@@ -43,7 +43,9 @@ export function Footer() {
               {group.map((link) => (
                 <a
                   key={link}
-                  href="#"
+                  href="https://www.instagram.com/ininstudio_"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block text-xs text-[#AAB0C5]/50 hover:text-[#AAB0C5]/80 transition-colors"
                 >
                   {link}

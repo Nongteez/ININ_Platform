@@ -5,12 +5,14 @@ import StudioEditor from '@/pages/StudioEditor';
 import Contact from '@/pages/Contact';
 import PuppyLove from '@/pages/PuppyLove';
 import PuppyLovePlay from '@/pages/PuppyLovePlay';
+import NovelPage from '@/pages/NovelPage';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/novel" element={<NovelPage />} />
         <Route path="/studio-intro" element={<Studio />} />
         <Route path="/studio" element={<StudioEditor />} />
         <Route path="/contact" element={<Contact />} />

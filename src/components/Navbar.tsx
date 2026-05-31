@@ -8,7 +8,7 @@ import { ProfileDropdown } from "./ProfileDropdown";
 const links = [
   { label: "Home", href: "/" },
   { label: "Interactive", href: "#" },
-  { label: "Trending", href: "#" },
+  { label: "Novel", href: "/novel" },
   { label: "Community", href: "#" },
   { label: "Contact", href: "/contact" },
 ];
